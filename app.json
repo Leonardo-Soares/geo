@@ -2,14 +2,15 @@
   "expo": {
     "name": "geo",
     "slug": "geo",
-    "version": "1.0.0",
+    "version": "1.0.2",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/logo-inicio.png",
     "userInterfaceStyle": "light",
+    "backgroundColor": "#343A40",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#343A40"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -21,13 +22,24 @@
       "supportsTablet": true
     },
     "android": {
+      "permissions": [
+        "ACCESS_BACKGROUND_LOCATION",
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_FINE_LOCATION"
+      ],
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
-      }
+        "foregroundImage": "./assets/logo-inicio.png",
+        "backgroundColor": "#343A40"
+      },
+      "package": "com.leonardosoares.geo"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "f8889306-c08b-40ec-9c2a-738908e4e7ee"
+      }
     }
   }
 }
