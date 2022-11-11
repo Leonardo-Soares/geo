@@ -37,7 +37,7 @@ TaskManager.defineTask(LOCATION_TASK_NAME, ({ data, error }) => {
     if (data) {
       const { locations } = data;
       console.log('1º Plano (Sucesso)');
-      // postLocation(locations)
+      postLocation(locations)
     }
   }, 5000);
 });
@@ -54,7 +54,7 @@ TaskManager.defineTask(BACKGROUND_FETCH_TASK, ({ data, error }) => {
     if (data) {
       const { locations } = data;
       console.log('2º Plano (Sucesso)');
-      // postLocation(locations)
+      postLocation(locations)
       return BackgroundFetch.BackgroundFetchResult.NewData;
     }
   }, 2000);

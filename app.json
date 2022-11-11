@@ -2,7 +2,7 @@
   "expo": {
     "name": "geo",
     "slug": "geo",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "orientation": "portrait",
     "icon": "./assets/logo-inicio.png",
     "userInterfaceStyle": "light",
