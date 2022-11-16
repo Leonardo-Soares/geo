@@ -2,7 +2,6 @@ import React from "react";
 import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import * as TaskManager from "expo-task-manager";
 import * as Location from "expo-location";
-import PostLocation from "./src/PostLocation";
 import { postLocation } from "./src/services/postLocation";
 import * as BackgroundFetch from 'expo-background-fetch';
 import LocationAtual from "./src/components/LocationAtual";
@@ -35,29 +34,30 @@ TaskManager.defineTask(LOCATION_TASK_NAME, ({ data, error }) => {
       return;
     }
     if (data) {
+      console.log(data);
       const { locations } = data;
       console.log('1º Plano (Sucesso)');
-      postLocation(locations)
+      console.log(locations);
+      // postLocation(locations)
+      return BackgroundFetch.BackgroundFetchResult.NewData;
     }
   }, 5000);
 });
 
 TaskManager.defineTask(BACKGROUND_FETCH_TASK, ({ data, error }) => {
+  const { status } = Location.requestBackgroundPermissionsAsync();
+  if (status === "granted") {
+    Location.startLocationUpdatesAsync(LOCATION_TASK_NAME, {
+      accuracy: Location.Accuracy.Balanced,
+    });
+  }
+  console.log(data);
   console.log('2º Plano (Sem intervalo)');
   const { locations } = data;
-  postLocation(locations)
-  setInterval(() => {
-    if (error) {
-      console.log('2º Plano (erro)');
-      return;
-    }
-    if (data) {
-      const { locations } = data;
-      console.log('2º Plano (Sucesso)');
-      postLocation(locations)
-      return BackgroundFetch.BackgroundFetchResult.NewData;
-    }
-  }, 2000);
+  console.log(locations);
+  return BackgroundFetch.BackgroundFetchResult.NewData;
+
+  // postLocation(locations);
 });
 
 async function registerBackgroundFetchAsync() {
